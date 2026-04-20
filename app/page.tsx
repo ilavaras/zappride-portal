@@ -70,9 +70,18 @@ export default function Home() {
       <section className="p-12 text-center">
         <h2 className="text-3xl font-semibold mb-6">ROI Calculator</h2>
         <div className="max-w-xl mx-auto space-y-4">
-          <input type="number" value={inputs.scooters} onChange={(e)=>setInputs({...inputs, scooters:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Scooters" />
-          <input type="number" value={inputs.rides} onChange={(e)=>setInputs({...inputs, rides:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Rides/day" />
-          <input type="number" value={inputs.price} onChange={(e)=>setInputs({...inputs, price:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Price" />
+          <input type="number" value={inputs.scooters} onChange={(e)=>{
+  const value = e.target.value;
+  // Convert to number, or default to 0 if empty
+  const newValue = value === "" ? 0 : Number(value);  setInputs({...inputs, scooters:e.target.value})}} className="w-full p-3 border rounded-xl" placeholder="Scooters" />
+          <input type="number" value={inputs.rides} onChange={(e)=>{
+  const value = e.target.value;
+  // Convert to number, or default to 0 if empty
+  const newValue = value === "" ? 0 : Number(value);setInputs({...inputs, rides:e.target.value})}} className="w-full p-3 border rounded-xl" placeholder="Rides/day" />
+          <input type="number" value={inputs.price} onChange={(e)=>{
+  const value = e.target.value;
+  // Convert to number, or default to 0 if empty
+  const newValue = value === "" ? 0 : Number(value);setInputs({...inputs, price:e.target.value})}} className="w-full p-3 border rounded-xl" placeholder="Price" />
           <button onClick={calculateROI} className="bg-blue-600 text-white px-6 py-2 rounded-xl">Calculate</button>
           {roi && <p className="text-xl font-bold">Monthly Revenue: ₹{roi}</p>}
         </div>
