@@ -1,65 +1,106 @@
-import Image from "next/image";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const [roi, setRoi] = useState(null);
+  const [inputs, setInputs] = useState({ scooters: 10, rides: 5, price: 50 });
+
+  const calculateROI = () => {
+    const monthly = inputs.scooters * inputs.rides * inputs.price * 30;
+    setRoi(monthly);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="font-sans text-gray-900">
+      {/* Navbar */}
+      <nav className="flex justify-between items-center p-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-blue-600">⚡ Zappride</h1>
+        <div className="space-x-6 hidden md:block">
+          <a href="#">Home</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#business">Business</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </nav>
+
+      {/* Hero */}
+      <section className="bg-gradient-to-r from-blue-500 to-green-400 text-white p-20 text-center">
+        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-5xl font-bold mb-6">
+          Ride Smart. Ride Electric ⚡
+        </motion.h1>
+        <p className="text-xl mb-4">India’s Smart EV Ride Network</p>
+        <p className="bg-white text-blue-600 inline-block px-4 py-1 rounded-full mb-6">Launching soon in Bangalore & Chennai</p>
+        <div className="space-x-4">
+          <button className="bg-white text-blue-600 px-8 py-3 rounded-2xl shadow">Get Started</button>
+          <button className="border px-8 py-3 rounded-2xl">Partner With Us</button>
         </div>
-      </main>
+      </section>
+
+      {/* Fake Map Section */}
+      <section className="p-12 text-center">
+        <h2 className="text-3xl font-semibold mb-6">Live Scooter Availability</h2>
+        <div className="h-64 bg-gray-200 rounded-2xl flex items-center justify-center">
+          <p className="text-gray-500">[ Map Preview Coming Soon ]</p>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="p-12 grid md:grid-cols-3 text-center gap-6">
+        {["10,000+ Rides", "500+ EV Scooters", "5 Cities"].map((stat, i) => (
+          <div key={i} className="text-xl font-semibold">{stat}</div>
+        ))}
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="bg-gray-100 p-12 text-center">
+        <h2 className="text-3xl font-semibold mb-8">Pricing</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[{ name: "Pay as you go", price: "₹5/min" }, { name: "Daily", price: "₹199" }, { name: "Monthly", price: "₹1999" }].map((plan, i) => (
+            <motion.div key={i} whileHover={{ scale: 1.05 }} className="p-6 bg-white rounded-2xl shadow">
+              <h3 className="text-xl font-semibold">{plan.name}</h3>
+              <p className="text-2xl mt-2">{plan.price}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ROI Calculator */}
+      <section className="p-12 text-center">
+        <h2 className="text-3xl font-semibold mb-6">ROI Calculator</h2>
+        <div className="max-w-xl mx-auto space-y-4">
+          <input type="number" value={inputs.scooters} onChange={(e)=>setInputs({...inputs, scooters:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Scooters" />
+          <input type="number" value={inputs.rides} onChange={(e)=>setInputs({...inputs, rides:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Rides/day" />
+          <input type="number" value={inputs.price} onChange={(e)=>setInputs({...inputs, price:e.target.value})} className="w-full p-3 border rounded-xl" placeholder="Price" />
+          <button onClick={calculateROI} className="bg-blue-600 text-white px-6 py-2 rounded-xl">Calculate</button>
+          {roi && <p className="text-xl font-bold">Monthly Revenue: ₹{roi}</p>}
+        </div>
+      </section>
+
+      {/* Business */}
+      <section id="business" className="p-12 text-center bg-blue-50">
+        <h2 className="text-3xl font-semibold mb-4">Partner With Zappride</h2>
+        <p className="mb-6">Deploy EV fleets in IT parks, metros & apartments</p>
+        <button className="bg-blue-600 text-white px-6 py-2 rounded-xl">Become a Partner</button>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="p-12 text-center">
+        <h2 className="text-3xl font-semibold mb-6">Contact Us</h2>
+        <form className="max-w-xl mx-auto space-y-4">
+          <input type="text" placeholder="Name" className="w-full p-3 border rounded-xl" />
+          <input type="email" placeholder="Email" className="w-full p-3 border rounded-xl" />
+          <textarea placeholder="Message" className="w-full p-3 border rounded-xl" />
+          <button className="bg-green-500 text-white px-6 py-2 rounded-xl">Submit</button>
+        </form>
+      </section>
+
+      {/* WhatsApp Floating */}
+      <a href="https://wa.me/91XXXXXXXXXX" className="fixed bottom-6 right-6 bg-green-500 text-white px-4 py-3 rounded-full shadow-lg">Chat</a>
+
+      {/* Footer */}
+      <footer className="bg-black text-white p-6 text-center">
+        <p>© 2026 Zappride</p>
+      </footer>
     </div>
   );
 }
