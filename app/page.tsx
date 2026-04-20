@@ -9,7 +9,7 @@ export default function Home() {
 
   const calculateROI = () => {
     const monthly = inputs.scooters * inputs.rides * inputs.price * 30;
-    setRoi(100);
+    setRoi(monthly);
   };
 
   return (
