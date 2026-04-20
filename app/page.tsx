@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Home() {
-  const [roi, setRoi] = useState(null);
+  const [roi, setRoi] = useState(0);
   const [inputs, setInputs] = useState({ scooters: 10, rides: 5, price: 50 });
 
   const calculateROI = () => {
