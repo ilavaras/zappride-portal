@@ -1,27 +1,17 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-
   "redirects": [
-    {
-      "source": "/agent",
-      "destination": "/agent/",
-      "permanent": false
-    },
-    {
-      "source": "/business-ops",
-      "destination": "/business-ops/",
-      "permanent": false
-    }
-  ], 
-
+    { "source": "/agent", "destination": "/agent/", "permanent": false },
+    { "source": "/business-ops", "destination": "/business-ops/", "permanent": false },
+    { "source": "/it-ops", "destination": "/it-ops/", "permanent": false },
+    { "source": "/admin", "destination": "/admin/", "permanent": false },
+    { "source": "/investor", "destination": "/investor/", "permanent": false }
+  ],
   "rewrites": [
-    {
-      "source": "/agent/:path*",
-      "destination": "https://zappride-agent-portal.vercel.app/:path*"
-    },
-    {
-      "source": "/business-ops/:path*",
-      "destination": "https://zappride-business-ops-portal.vercel.app/:path*"
-    }
+    { "source": "/agent/:path*", "destination": "https://zappride-agent-portal.vercel.app/:path*" },
+    { "source": "/business-ops/:path*", "destination": "https://zappride-business-ops-portal.vercel.app/:path*" },
+    { "source": "/it-ops/:path*", "destination": "https://zappride-it-ops-portal.vercel.app/:path*" },
+    { "source": "/admin/:path*", "destination": "https://zappride-admin-portal.vercel.app/:path*" },
+    { "source": "/investor/:path*", "destination": "https://zappride-investor-portal.vercel.app/:path*" }
   ]
 }
