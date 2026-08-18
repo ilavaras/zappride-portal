@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "redirects": [
+    {
+      "source": "/agent",
+      "destination": "/agent/",
+      "permanent": false
+    },
+    {
+      "source": "/business-ops",
+      "destination": "/business-ops/",
+      "permanent": false
+    }
+  ],
+
+  "rewrites": [
+    {
+      "source": "/agent/:path*",
+      "destination": "https://zappride-agent-portal.vercel.app/:path*"
+    },
+    {
+      "source": "/business-ops/:path*",
+      "destination": "https://zappride-business-ops-portal.vercel.app/:path*"
+    }
+  ]
+}
