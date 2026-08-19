@@ -8,6 +8,13 @@
     { "source": "/investor", "destination": "/investor/", "permanent": false }
   ],
   "rewrites": [
+
+    { "source": "/agent/", "destination": "https://zappride-agent-portal.vercel.app/" },
+    { "source": "/business-ops/", "destination": "https://zappride-business-ops-portal.vercel.app/" },
+    { "source": "/it-ops/", "destination": "https://zappride-it-ops-portal.vercel.app/" },
+    { "source": "/admin/", "destination": "https://zappride-admin-portal.vercel.app/" },
+    { "source": "/investor/", "destination": "https://zappride-investor-portal.vercel.app/" },
+
     { "source": "/agent/:path*", "destination": "https://zappride-agent-portal.vercel.app/:path*" },
     { "source": "/business-ops/:path*", "destination": "https://zappride-business-ops-portal.vercel.app/:path*" },
     { "source": "/it-ops/:path*", "destination": "https://zappride-it-ops-portal.vercel.app/:path*" },
